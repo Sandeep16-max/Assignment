@@ -1,0 +1,103 @@
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+>  d  { name: "Item1", calories: 100, brand: "Haldiram", category: "snack",   { name: "Item2", calories: 150, brand: "BTW", category: "juices", pric  { name: "Item3", calories: 120, brand: "Haldiram", category: "meals", price: 100 }tem3", calories: 120, brand: "Haldiram", category: "meal... ]);
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("68da2a2151f9a4490f255a2d"),
+                ObjectId("68da2a2151f9a4490f255a2e"),
+                ObjectId("68da2a2151f9a4490f255a2f")
+        ]
+} db.food.insertOne({ name: "Item4", calories: 130, brand: "Haldiram", category: "juices", price: 90 });m4", calories: 130, brand: "Haldiram", c{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("68da2a2d51f9a4490f255a30")
+} db.food.insertOne({ name: "Item5", calories: 140, brand: "BTW", category: "snack", price: 60 });: "Item5", calories: 140, brand: "BTW", catego{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("68da2a3951f9a4490f255a31")
+}     { name: "Resto1", year: 2000, location: "Delhi", contact: "1234567890"  { name: "Resto2", year: 2010, location: "Mumbai", contact: "0987654321  { name: "Resto3", year: 2015, location: "Delhi", contact: "1122334455", email: "resto3@mail.com", nos_of_days_open: 200, city: "Delhi", category: "meals", serving: "Buffet" }of_days_open: 200, city: "Delhi", ca... ]);
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("68da2a4751f9a4490f255a32"),
+                ObjectId("68da2a4751f9a4490f255a33"),
+                ObjectId("68da2a4751f9a4490f255a34")
+  db.restaurent.insertOne({ name: "Resto4", year: 2018, location: "Mumbai", contact: "5566778899", email: "resto4@mail.com", nos_of_days_open: 150, city: "Mumbai", category: "snack", serving: "Dining" });days_open: 1{
+        "acknowledged" : true,
+  db.restaurent.insertOne({ name: "Resto5", year: 2020, location: "Delhi", contact: "6677889900", email: "resto5@mail.com", nos_of_days_open: 100, city: "Delhi", category: "juices", serving: "Takeaway" });ys_open: 10{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("68da2a4f51f9a4490f255a36")
+}
+> db.restaurent.find({ city: { $in: ["Delhi", "Mumbai"] } }).pretty();
+{
+        "_id" : ObjectId("68da2a4751f9a4490f255a32"),
+        "name" : "Resto1",
+        "year" : 2000,
+        "location" : "Delhi",
+        "contact" : "1234567890",
+        "email" : "resto1@mail.com",
+        "nos_of_days_open" : 300,
+        "city" : "Delhi",
+        "category" : "snack",
+        "serving" : "Dining"
+}
+{
+        "_id" : ObjectId("68da2a4751f9a4490f255a33"),
+        "name" : "Resto2",
+        "year" : 2010,
+        "location" : "Mumbai",
+        "contact" : "0987654321",
+        "email" : "resto2@mail.com",
+        "nos_of_days_open" : 250,
+        "city" : "Mumbai",
+        "category" : "juices",
+        "serving" : "Takeaway"
+}
+{
+        "_id" : ObjectId("68da2a4751f9a4490f255a34"),
+        "name" : "Resto3",
+        "year" : 2015,
+        "location" : "Delhi",
+        "contact" : "1122334455",
+        "email" : "resto3@mail.com",
+        "nos_of_days_open" : 200,
+        "city" : "Delhi",
+        "category" : "meals",
+        "serving" : "Buffet"
+}
+{
+        "_id" : ObjectId("68da2a4e51f9a4490f255a35"),
+        "name" : "Resto4",
+        "year" : 2018,
+        "location" : "Mumbai",
+        "contact" : "5566778899",
+        "email" : "resto4@mail.com",
+        "nos_of_days_open" : 150,
+        "city" : "Mumbai",
+        "category" : "snack",
+        "serving" : "Dining"
+}
+{
+        "_id" : ObjectId("68da2a4f51f9a4490f255a36"),
+        "name" : "Resto5",
+        "year" : 2020,
+        "location" : "Delhi",
+        "contact" : "6677889900",
+        "email" : "resto5@mail.com",
+        "nos_of_days_open" : 100,
+        "city" : "Delhi",
+        "category" : "juices",
+        "serving" : "Takeaway"
+}
+> db.food.updateOne(
+...   { $set: { price: 999 } }  // Set the price to the desired new value..   { $set: { price: 999 } }  // Set the price to the desired new valu... );
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.restaurent.updateMany(
+...   { $set: { location: "New Location" } }  // Set to the desired new location$set: { location: "New Location" } }  // Set to the desired new
+... );
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.food.deleteMany({
+...   $or: [
+...     { brand: "Haldiram" },
+...     { category: "juices" }
+...   ]
+... });
+{ "acknowledged" : true, "deletedCount" : 4 }
